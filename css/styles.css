@@ -1,0 +1,69 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+#app {
+	height: 100%;
+}
+
+.MarkdownEditor {
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	overflow: hidden;
+	font-family: "Roboto", sans-serif;
+}
+
+.header {
+	line-height: 30px;
+	letter-spacing: 5px;
+}
+
+#input {
+	flex: 1 1 50%;
+}
+
+.inputContent {
+	width: 100%;
+	padding: 10px;
+	border: 0;
+	letter-spacing: 2px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-moz-box-shadow: inset 0 1px 3px #ddd;
+	-webkit-box-shadow: inset 0 1px 3px #ddd;
+	box-shadow: inset 0 1px 3px #ddd;
+}
+
+#output {
+	flex: 1 1 50%;
+	display: flex;
+	flex-direction: column;
+}
+
+#output.header {
+	flex: 0 1 auto;
+}
+
+.outputContent {
+	width: 100%;
+	padding: 10px;
+	flex: 1 1 100%;
+	color: white;
+	background-color: #000;
+	letter-spacing: 2px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+
+.dialogContent {
+	font-size: 1.5em;
+}

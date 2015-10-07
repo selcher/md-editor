@@ -1,0 +1,1 @@
+"#Markdown Editor\n---\n\n> markdown editor web application based on one of the examples from *ReactJS*\n\n\n##Goal\n---\n\n> built this app for learning markdown, reactjs, material-ui, and webpack\n\n\n##Todo\n---\n\n- Webpack with Gulp\n- LocalStorage session"

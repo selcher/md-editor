@@ -1,0 +1,24 @@
+{
+  "name": "MarkdownEditor",
+  "version": "1.0.0",
+  "description": "Markdown editor app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p"
+  },
+  "author": "Selcher",
+  "license": "ISC",
+  "dependencies": {
+    "fbjs": "^0.2.1",
+    "material-ui": "^0.12.2",
+    "react": "^0.13.3",
+    "react-dom": "^0.14.0-rc1",
+    "react-tap-event-plugin": "^0.1.8"
+  },
+  "devDependencies": {
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
+  }
+}
