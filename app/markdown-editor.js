@@ -1,7 +1,17 @@
 
 var React = require( "react" );
-var marked = require( "../js/marked.min.js" );
 var saveAs = require( "../js/FileSaver.min.js" );
+var marked = require( "marked" );
+marked.setOptions( {
+	"renderer": new marked.Renderer(),
+	"gfm": true,
+	"tables": true,
+	"breaks": false,
+	"pedantic": false,
+	"sanitize": true,
+	"smartLists": true,
+	"smartypants": false
+} );
 
 var ThemeManager = require( "material-ui/lib/styles/theme-manager" );
 var darkRawTheme = require( "material-ui/lib/styles/raw-themes/light-raw-theme" );
@@ -62,10 +72,7 @@ var MarkdownEditor = React.createClass( {
 	"rawMarkup": function() {
 
     	return {
-    		"__html": marked(
-    			this.state.value,
-    			{ "sanitize": true }
-    		)
+    		"__html": marked( this.state.value )
     	};
 
 	},

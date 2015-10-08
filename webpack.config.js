@@ -30,7 +30,7 @@ var config = {
 
 		"loaders": [
 			{
-				"text": /\.jsx$/,
+				"text": /\.js$/,
 				"loader": "jsx-loader?harmony"
 			}
 		]

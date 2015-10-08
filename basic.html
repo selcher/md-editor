@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+ 	<meta charset="UTF-8">
+ 	<meta name='HandheldFriendly' content='True' />
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+
+ 	<title>Markdown</title>
+
+ 	<link type="text/css" rel="stylesheet"
+ 		href='https://fonts.googleapis.com/css?family=Roboto'>
+ 	<link type="text/css" rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+	<div id="app"></div>
+
+	<script type="text/jsx">
+
+	var MarkdownEditor = React.createClass( {
+	 	"getInitialState": function() {
+
+	    	return {
+	    		"value": "Type some *markdown* here!"
+	    	};
+
+	  	},
+	  	"componentDidMount": function() {
+
+	  		var inputDom = this.refs.input.getDOMNode();
+	  		var inputHeaderDom = this.refs.inputHeader.getDOMNode();
+	  		var textAreaDom = this.refs.textarea.getDOMNode();
+
+	  		var resizeTextAreaInput = function() {
+
+		  		textAreaDom.style.height = inputDom.offsetHeight -
+		  			inputHeaderDom.offsetHeight + "px";
+
+		  	};
+
+		  	resizeTextAreaInput();
+
+		  	window.onresize = resizeTextAreaInput;
+
+	  	},
+		"handleChange": function() {
+
+	    	this.setState( {
+	    		"value": this.refs.textarea.getDOMNode().value
+	    	} );
+
+		},
+		"rawMarkup": function() {
+
+	    	return {
+	    		"__html": marked(
+	    			this.state.value,
+	    			{ "sanitize": true }
+	    		)
+	    	};
+
+		},
+		"render": function() {
+
+	    	return (
+	    		<div className="MarkdownEditor">
+	    			<div id="input" ref="input">
+		        		<h3 className="header"
+		        			ref="inputHeader">
+		        			Input
+		        		</h3>
+		        		<textarea
+		        			className="inputContent"
+		        			onChange={this.handleChange}
+		        			ref="textarea"
+		        			defaultValue={this.state.value} />
+	        		</div>
+	        		<div id="output" ref="output">
+	        			<h3 className="header"
+	        				ref="outputHeader">
+	        				Output
+	        			</h3>
+	        			<div className="outputContent"
+	        				dangerouslySetInnerHTML={this.rawMarkup()} />
+	        		</div>
+	      		</div>
+	    	);
+
+		}
+
+	} );
+
+	React.render( <MarkdownEditor />, document.getElementById( "app" ) );
+
+	</script>
+
+	<script type="text/javascript" src="js/marked.min.js"></script>
+	<script type="text/javascript" src="js/react.js"></script>
+	<script type="text/javascript" src="js/JSXTransformer.js"></script>
+
+</body>
+
+</html>
