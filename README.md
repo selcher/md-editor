@@ -11,3 +11,4 @@ Todo
 ---
 - Webpack with Gulp
 - LocalStorage session
+- Babel loader
