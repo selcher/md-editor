@@ -22,6 +22,7 @@ var MenuItem = require( "material-ui/lib/menus/menu-item" );
 var IconButton = require( "material-ui/lib/icon-button" );
 var Dialog = require( "material-ui/lib/dialog" );
 var TextField = require( "material-ui/lib/text-field" );
+var Snackbar = require( "material-ui/lib/snackbar" );
 
 var MarkdownEditor = React.createClass( {
 	"childContextTypes": {
@@ -52,8 +53,12 @@ var MarkdownEditor = React.createClass( {
 
   		var resizeTextAreaInput = function() {
 
-	  		textAreaDom.style.height = inputDom.offsetHeight -
-	  			inputHeaderDom.offsetHeight + "px";
+	  		var textAreaDomStyle = window.getComputedStyle( textAreaDom );
+
+	  		textAreaDom.style.height = ( inputDom.offsetHeight -
+	  			parseInt( textAreaDomStyle.paddingTop ) -
+	  			parseInt( textAreaDomStyle.paddingBottom ) -
+	  			inputHeaderDom.offsetHeight ) + "px";
 
 	  	};
 
@@ -106,6 +111,8 @@ var MarkdownEditor = React.createClass( {
 
 		document.execCommand( "copy" );
 	
+		this.refs.copyNotice.show();
+
 	},
 	"saveInput": function() {
 
@@ -127,6 +134,8 @@ var MarkdownEditor = React.createClass( {
 			"value": ""
 		} );
 	
+		this.refs.clearNotice.show();
+
 	},
 	"showTipsDialog": function() {
 
@@ -215,7 +224,10 @@ var MarkdownEditor = React.createClass( {
         						<TextField
         							ref="outputName"
         							hintText="Sample.md"
+        							hintStyle={{color:'#fff'}}
         							value={this.state.outputName}
+        							underlineStyle={{borderColor:'#00bcd4'}}
+        							underlineFocusStyle={{borderColor:'#fff'}}
         							onChange={this.handleOutputNameChange} />
         					}
         					iconElementRight={
@@ -230,6 +242,14 @@ var MarkdownEditor = React.createClass( {
         				dangerouslySetInnerHTML={this.rawMarkup()} />
         		</div>
         		{tipsDialog}
+        		<Snackbar
+        			ref="copyNotice"
+        			message="Copied content to clipboard"
+        			autoHideDuration={3000} />
+        		<Snackbar
+        			ref="clearNotice"
+        			message="Cleared content on input"
+        			autoHideDuration={3000} />
       		</div>
     	);
 

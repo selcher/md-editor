@@ -26,6 +26,7 @@ html, body {
 }
 
 #input {
+	padding: 10px;
 	flex: 1 1 50%;
 }
 
@@ -43,6 +44,7 @@ html, body {
 }
 
 #output {
+	padding: 10px;
 	flex: 1 1 50%;
 	display: flex;
 	flex-direction: column;
